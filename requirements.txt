@@ -1,0 +1,8 @@
+opencv-python
+torch
+tensorflow
+yolov5
+deepface
+python-telegram-bot
+flask
+geopy

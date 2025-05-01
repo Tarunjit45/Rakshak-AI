@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Live Threat Detection and Logs</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: black;
+            color: #00FF00;
+            margin: 0;
+            padding: 20px;
+        }
+        h1, h2 {
+            color: #00FF00;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .container {
+            display: flex;
+            flex-direction: row;
+            gap: 20px;
+            justify-content: center;
+        }
+        .video-feed, .logs {
+            flex: 1;
+            overflow-y: auto;
+            max-height: 600px;
+            border: 2px solid #00FF00;
+            padding: 10px;
+            border-radius: 8px;
+            background-color: #001100;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            color: #00FF00;
+        }
+        th, td {
+            border: 1px solid #00FF00;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #003300;
+        }
+        a {
+            color: #00FF00;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        img {
+            border: 2px solid #00FF00;
+            border-radius: 8px;
+            display: block;
+            margin: 0 auto;
+        }
+    </style>
+    <script>
+        async function fetchLogs() {
+            try {
+                const response = await fetch('/api/logs');
+                const logs = await response.json();
+                const tbody = document.querySelector('.logs table tbody');
+                tbody.innerHTML = '';
+                logs.forEach(log => {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td>${log.timestamp}</td>
+                        <td>${log.threat_type}</td>
+                        <td>${log.description}</td>
+                        <td>${log.latitude}</td>
+                        <td>${log.longitude}</td>
+                    `;
+                    tbody.appendChild(row);
+                });
+            } catch (error) {
+                console.error('Error fetching logs:', error);
+            }
+        }
+        setInterval(fetchLogs, 5000); // Fetch logs every 5 seconds
+        window.onload = fetchLogs;
+    </script>
+</head>
+<body>
+    <h1>Live Threat Detection and Logs</h1>
+    <div class="container">
+        <div class="video-feed">
+            <h2>Live Feed</h2>
+            <img src="{{ url_for('video_feed') }}" width="100%" />
+        </div>
+        <div class="logs">
+            <h2>Threat Detection Logs</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Timestamp (UTC)</th>
+                        <th>Threat Type</th>
+                        <th>Description</th>
+                        <th>Latitude</th>
+                        <th>Longitude</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for log in logs %}
+                    <tr>
+                        <td>{{ log[0] }}</td>
+                        <td>{{ log[1] }}</td>
+                        <td>{{ log[2] }}</td>
+                        <td>{{ log[3] if log[3] else 'N/A' }}</td>
+                        <td>{{ log[4] if log[4] else 'N/A' }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>
