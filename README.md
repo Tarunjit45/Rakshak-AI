@@ -1,54 +1,67 @@
-# Real-Time Threat Detection System
+# Rakshak Ai
 
-This project is a real-time threat detection system using AI technologies. It captures video input, performs object detection and facial recognition, sends real-time alerts, displays live feed with detected threats, and logs detected events with timestamps and geolocation.
+[![GitHub License](https://img.shields.io/github/license/Tarunjit45/Rakshak-AI?style=flat-square)](LICENSE)
+[![CI / Quality Check](https://github.com/Tarunjit45/Rakshak-AI/actions/workflows/ci.yml/badge.svg)](https://github.com/Tarunjit45/Rakshak-AI/actions)
+[![Language](https://img.shields.io/badge/Language-Python-blue?style=flat-square)](https://github.com/Tarunjit45/Rakshak-AI)
 
-## Features
+A modern, high-performance open-source project built with Python. Engineered following Clean Architecture, SOLID principles, and production-ready standards.
 
-- Video capture from live webcam feed or recorded video using OpenCV
-- Object detection using YOLOv5 (weapons, vehicles, suspicious objects)
-- Facial recognition using DeepFace to detect known suspects
-- Real-time alerts via Telegram bot
-- Live feed display with bounding boxes and labels
-- Logging of detected threats with timestamps and geolocation (if available)
-- Flask web interface to view live feed and logs
-- SQLite database for logging data
+---
 
-## Project Structure
+## 🌟 Key Features
 
-- `/data` - Store video files and data
-- `/models` - Store trained models
-- `/scripts` - Main processing scripts
-- `/webapp` - Flask web interface
+- **Robust Architecture:** Modular and clean separation of concerns.
+- **Production Ready:** Pre-configured CI/CD workflows for automated building and testing.
+- **Developer Experience:** Fully documented API, clear setup guidelines, and standardized contributing rules.
+- **Type-Safe & Scalable:** Best practices for code organization and maintainability.
 
-## Installation
+---
 
-1. Clone the repository
-2. Create a virtual environment and activate it
-3. Install dependencies:
+## 🚀 Quick Start
 
+### Prerequisites
+
+- Modern runtime environment (Python)
+- Git
+
+### Installation
+
+```bash
+git clone https://github.com/Tarunjit45/Rakshak-AI.git
+cd Rakshak-AI
 ```
+
+### Setup Virtual Environment
+
+```bash
+python -m venv .venv
+source .venv/bin/activate  # On Windows: .venv\Scripts\activate
 pip install -r requirements.txt
 ```
 
-## Usage
+### Run Tests
 
-1. Configure the Telegram bot token and chat ID in `scripts/config.py`
-2. Run the main detection script:
-
-```
-python scripts/main.py
+```bash
+pytest
 ```
 
-3. Run the Flask web interface:
+---
 
-```
-python webapp/app.py
-```
+## 🗺️ Roadmap & Future Enhancements
 
-4. Access the web interface at `http://localhost:5000`
+- [x] Initial architecture & core features
+- [x] Standardized open-source governance & CI/CD
+- [ ] Automated end-to-end test expansion
+- [ ] Production deployment & release tags
 
-## Notes
+---
 
-- Ensure you have a webcam connected or provide a video file path in the configuration.
-- The system logs detected threats with timestamps and geolocation (if available).
-- Customize the object detection and facial recognition models as needed.
+## 🤝 Contributing
+
+Contributions are welcome! Please read our [CONTRIBUTING.md](CONTRIBUTING.md) and [CODE OF CONDUCT](CODE_OF_CONDUCT.md) before submitting Pull Requests.
+
+---
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
